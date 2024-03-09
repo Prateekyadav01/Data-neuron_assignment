@@ -11,13 +11,15 @@ const Table = () => {
     useEffect(() => {
         axios.get('http://localhost:3000/user')
             .then((response) =>
-                setData(response.data))
+            //    console.log('response', response)
+               setData(response.data))
+               
             .catch((error) => console.log(error));
     }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const id = data.length + 1;
+        const id = data[data.length - 1].id +1;
         axios.post('http://localhost:3000/user', {
             id: id,
             name: name,
@@ -39,15 +41,16 @@ const Table = () => {
 
     }
 
-    const handleEdit = (Idchange) => {
-        axios.get('http://localhost:3000/user/' + Idchange)
+    const handleEdit = (id) => {
+        console.log(id)
+        axios.get('http://localhost:3000/user/' + id)
             .then((response) => {
                 console.log(response);
-                // setUpdateName(response.data.name)
-                // setUpdateEmail(response.data.email)
+                setUpdateName(response.data.name);
+                setUpdateEmail(response.data.email);
             })
             .catch((error) => console.error(error));
-        setEditId(Idchange);
+        setEditId(id);
     }
 
     const handleDelete = (deleteId) => {
@@ -78,7 +81,8 @@ const Table = () => {
                 </thead>
                 <tbody>
                     {
-                        data.map((user, index) => (
+                       data.length!==0 && data.map((user, index) => (
+                            
                             user.id === editId ?
                                 <tr>
                                     <td>{user.id}</td>
@@ -92,6 +96,7 @@ const Table = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>
+                                       
                                         <button onClick={() => handleEdit(user.id)}>Edit</button>
                                         <button onClick={() => handleDelete(user.id)}>Delete</button>
                                     </td>
