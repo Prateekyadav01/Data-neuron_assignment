@@ -1,19 +1,9 @@
 {
-    "user": [
-        {
-            "id": 1,
-            "name": "prateek",
-            "email": "prateek@gmail.com"
-        },
-        {
-            "id": 2,
-            "name": "prince",
-            "email": "princeek@gmail.com"
-        },
-        {
-            "id": 3,
-            "name": "arjun",
-            "email": "arjun@gmail.com"
-        }
-    ]
+  "user": [
+    {
+      "id": 1,
+      "name": "Prateek",
+      "email": "Yadav"
+    }
+  ]
 }
